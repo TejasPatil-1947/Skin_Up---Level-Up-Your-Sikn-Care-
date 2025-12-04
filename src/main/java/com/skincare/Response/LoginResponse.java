@@ -9,7 +9,7 @@ import lombok.Data;
 public class LoginResponse {
 
     private String jwtToken;
-    private User user;
+//    private User user;
 
 }
 

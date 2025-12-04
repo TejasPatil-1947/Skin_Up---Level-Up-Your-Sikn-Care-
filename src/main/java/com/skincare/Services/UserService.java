@@ -1,5 +1,6 @@
 package com.skincare.Services;
 
+import com.skincare.Dtos.UserDto;
 import com.skincare.Entities.User;
 import com.skincare.Request.LoginRequest;
 import com.skincare.Response.LoginResponse;
@@ -21,5 +22,5 @@ public interface UserService {
 
     void deleteUser(Long id);
 
-    User updateUser(Long id,User user);
+    UserDto updateUser(Long id, User user);
 }

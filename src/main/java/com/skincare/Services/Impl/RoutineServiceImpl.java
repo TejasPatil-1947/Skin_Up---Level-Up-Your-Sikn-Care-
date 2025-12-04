@@ -1,7 +1,9 @@
 package com.skincare.Services.Impl;
 
+import com.skincare.Dtos.RoutineDto;
 import com.skincare.Entities.Routine;
 import com.skincare.Entities.User;
+import com.skincare.Mapper.Mappers;
 import com.skincare.Repositories.RoutineRepository;
 import com.skincare.Repositories.UserRepository;
 import com.skincare.Services.RoutineService;
@@ -55,8 +57,11 @@ public class RoutineServiceImpl implements RoutineService {
     }
 
     @Override
-    public List<Routine> findByUserId(Long userId) {
+    public List<RoutineDto> findByUserId(Long userId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("user not found with id: " + userId));
-        return routineRepository.findByUserId(userId);
+        List<Routine> byUserId = routineRepository.findByUserId(userId);
+       return byUserId.stream()
+                .map(Mappers::mapToRoutineDto)
+                .toList();
     }
 }

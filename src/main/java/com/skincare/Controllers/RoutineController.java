@@ -1,5 +1,6 @@
 package com.skincare.Controllers;
 
+import com.skincare.Dtos.RoutineDto;
 import com.skincare.Entities.Routine;
 import com.skincare.Services.RoutineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ public class RoutineController {
     }
 
     @GetMapping("/getRoutines/{userId}")
-    public ResponseEntity<List<Routine>> getAllRoutinesByUserId(@PathVariable Long userId){
-        return new ResponseEntity<>(routineService.getAllRoutines(),HttpStatus.OK);
+    public ResponseEntity<List<RoutineDto>> getAllRoutinesByUserId(@PathVariable Long userId){
+        return new ResponseEntity<>(routineService.findByUserId(userId),HttpStatus.OK);
     }
 
     @PutMapping("/update/{routineId}")

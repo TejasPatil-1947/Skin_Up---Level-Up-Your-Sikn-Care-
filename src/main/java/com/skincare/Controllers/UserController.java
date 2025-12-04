@@ -1,5 +1,6 @@
 package com.skincare.Controllers;
 
+import com.skincare.Dtos.UserDto;
 import com.skincare.Entities.User;
 import com.skincare.Repositories.UserRepository;
 import com.skincare.Services.UserService;
@@ -26,11 +27,11 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<User> findById(@PathVariable Long id){
-        return new ResponseEntity<>(userRepository.findById(id).orElseThrow(),HttpStatus.OK);
+        return new ResponseEntity<>(userRepository.findById(id).get(),HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id,@RequestBody User user){
+    public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @RequestBody User user){
         return new ResponseEntity<>(userService.updateUser(id,user),HttpStatus.OK);
     }
 

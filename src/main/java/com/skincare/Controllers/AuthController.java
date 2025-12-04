@@ -40,7 +40,7 @@ public class AuthController {
                 .secure(true)
                 .sameSite("Strict")
                 .path("/")
-                .maxAge(1 * 60 * 60 * 10).build();
+                .maxAge(3600).build();
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE,cookie.toString())
                 .body(loginResponse);
     }

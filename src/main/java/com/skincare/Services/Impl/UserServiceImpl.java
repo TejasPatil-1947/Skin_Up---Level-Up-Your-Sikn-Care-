@@ -1,8 +1,10 @@
 package com.skincare.Services.Impl;
 
 
+import com.skincare.Dtos.UserDto;
 import com.skincare.Entities.Role;
 import com.skincare.Entities.User;
+import com.skincare.Mapper.Mappers;
 import com.skincare.Repositories.RoleRepository;
 import com.skincare.Repositories.UserRepository;
 import com.skincare.Request.LoginRequest;
@@ -80,7 +82,8 @@ public class UserServiceImpl implements UserService {
         String jwtToken = jwtService.generateToken(user);
         return LoginResponse.builder()
                 .jwtToken(jwtToken)
-                .user(user).build();
+//                .user(user)
+                .build();
     }
 
     public ResponseEntity<String> logout(){
@@ -107,15 +110,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(Long id,User user) {
+    public UserDto updateUser(Long id, User user) {
         User existingUser = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found with id: " + id));
         existingUser.setName(user.getName());
         existingUser.setGender(user.getGender());
         existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
         existingUser.setEmail(user.getEmail());
         existingUser.setSkinType(user.getSkinType());
-
-        return userRepository.save(existingUser);
+        User save = userRepository.save(existingUser);
+        UserDto userDto = Mappers.mapToUserDto(save);
+        return userDto;
     }
 
 

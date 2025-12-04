@@ -33,9 +33,13 @@ public class User implements UserDetails {
     private LocalDateTime createdAt;
     private String profileImg;
 
+
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Routine> routines = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<Reviews> reviews = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
