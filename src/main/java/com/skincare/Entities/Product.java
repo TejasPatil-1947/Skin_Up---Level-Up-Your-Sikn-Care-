@@ -26,6 +26,7 @@ public class Product {
     private String brand;
     private String skinType;
     private String productType;
+    private double price;
 
     @JsonIgnore
     @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
