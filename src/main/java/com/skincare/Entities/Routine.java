@@ -25,9 +25,15 @@ public class Routine {
     private String frequency;
     private String timeOfDay;
 
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void setCreatedAt(){
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt=LocalDateTime.now();
+    }
 
     @PreUpdate
     protected  void setUpdatedAt(){
