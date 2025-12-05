@@ -1,5 +1,6 @@
 package com.skincare.Entities;
 
+import com.skincare.Dtos.UserDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

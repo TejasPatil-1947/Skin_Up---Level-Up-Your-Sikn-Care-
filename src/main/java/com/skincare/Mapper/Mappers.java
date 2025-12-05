@@ -1,7 +1,9 @@
 package com.skincare.Mapper;
 
+import com.skincare.Dtos.ReviewsDto;
 import com.skincare.Dtos.RoutineDto;
 import com.skincare.Dtos.UserDto;
+import com.skincare.Entities.Reviews;
 import com.skincare.Entities.Routine;
 import com.skincare.Entities.User;
 
@@ -37,6 +39,19 @@ public class Mappers {
         dto.setGender(user.getGender());
         dto.setSkinType(user.getSkinType());
         dto.setProfileImg(user.getProfileImg());
+        return dto;
+    }
+
+    public static ReviewsDto mapToReviewDto(Reviews reviews){
+        ReviewsDto dto = new ReviewsDto();
+        dto.setReviewText(reviews.getReviewText());
+        dto.setProduct(reviews.getProduct());
+
+        User user = reviews.getUser();
+        UserDto userDto = mapToUserDto(user);
+
+        dto.setUser(userDto);
+        dto.setRatings(reviews.getRatings());
         return dto;
     }
 }

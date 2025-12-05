@@ -35,9 +35,10 @@ public class User implements UserDetails {
 
 
     @JsonIgnore
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Routine> routines = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Reviews> reviews = new ArrayList<>();
 
